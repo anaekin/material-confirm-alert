@@ -1,7 +1,7 @@
 import babel from 'rollup-plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
-// import commonjs from 'rollup-plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 
 import packageJson from './package.json';
 export default [
@@ -25,6 +25,14 @@ export default [
 			}),
 			external(),
 			resolve(),
+			copy({
+				targets: [
+					{
+						src: 'src/components/MaterialConfirmAlert/index.d.ts',
+						dest: 'dist',
+					},
+				],
+			}),
 		],
 	},
 ];

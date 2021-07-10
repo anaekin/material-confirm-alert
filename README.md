@@ -65,13 +65,31 @@ const MyComponent = () => {
 
 This is a Provider generated using the React Context API. The component which is using the confirmation alert requires to be wrapped inside this Provider.
 
+##### Example -
+
 ```jsx
+// Import
 import { ConfirmAlertProvider } from 'material-confirm-alert';
+...
+
+// App Component
+export const App = () => {
+    ...
+    // return
+    return (
+        <ConfirmAlertProvider>
+            // children
+            ...
+        </ConfirmAlertProvider>
+    )
+}
 ```
 
 #### `useConfirmAlert()`
 
 returns `confirm` function
+
+##### Example -
 
 ```jsx
 // imports
@@ -93,6 +111,8 @@ This function is used to call the confirmation dialog. It takes two parameters -
 | ---------- | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `options`  | `object` or `string` | Yes      | Sets the options for the confirmation dialog. Check `options` API for more details. If only `string` is passed, then it will be the title of the confirmation dialog. |
 | `callback` | `function`           | Yes      | Sets the callback, which will be called on user actions. It takes a parameter `result` which will be `true` or `false` based on user selection.                       |
+
+##### Example -
 
 ```jsx
 // Inside Components
@@ -122,6 +142,8 @@ This object can be used to set the optional parameters for the confirmation dial
 | `description`      | `string` | (empty)         | Sets the description for the confirmation dialog |
 | `okButtonText`     | `string` | 'Ok'            | Sets the 'Ok' button text                        |
 | `cancelButtonText` | `string` | 'Cancel'        | Sets the 'Cancel' button text                    |
+
+##### Example -
 
 ```jsx
 // Inside Components

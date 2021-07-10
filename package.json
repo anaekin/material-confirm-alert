@@ -26,7 +26,9 @@
 		"react confirm alert",
 		"react confirm dialog",
 		"react alert",
-		"material alert"
+		"material alert",
+		"react-confirm-alert",
+		"material-cofirm-alert"
 	],
 	"author": "Animesh Jain",
 	"license": "MIT",

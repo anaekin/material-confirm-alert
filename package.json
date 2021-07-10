@@ -1,0 +1,55 @@
+{
+	"name": "material-confirm-alert",
+	"version": "1.0.0",
+	"description": "A simple react material confirmation alert library",
+	"homepage": "https://github.com/anaekin/material-confirm-alert#readme",
+	"bugs": {
+		"url": "https://github.com/anaekin/material-confirm-alert/issues",
+		"email": "animesh.jain1203@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/anaekin/material-confirm-alert.git"
+	},
+	"main": "dist/index.js",
+	"module": "dist/index.esm.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "build-storybook",
+		"build": "rollup -c"
+	},
+	"keywords": [
+		"react confirm",
+		"material confirm",
+		"react confirm alert",
+		"react confirm dialog",
+		"react alert",
+		"material alert"
+	],
+	"author": "Animesh Jain",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/core": "^7.14.6",
+		"@babel/preset-react": "^7.14.5",
+		"@material-ui/core": "^4.12.1",
+		"@rollup/plugin-node-resolve": "^13.0.0",
+		"@storybook/addon-actions": "^6.3.4",
+		"@storybook/addon-essentials": "^6.3.4",
+		"@storybook/addon-links": "^6.3.4",
+		"@storybook/react": "^6.3.4",
+		"babel-loader": "^8.2.2",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"rollup": "^2.53.0",
+		"rollup-plugin-babel": "^4.4.0",
+		"rollup-plugin-commonjs": "^10.1.0",
+		"rollup-plugin-peer-deps-external": "^2.2.4"
+	},
+	"peerDependencies": {
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"@material-ui/core": "^4.12.1"
+	},
+	"dependencies": {}
+}

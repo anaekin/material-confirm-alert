@@ -1,6 +1,6 @@
 {
 	"name": "material-confirm-alert",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A simple react material confirmation alert library",
 	"homepage": "https://github.com/anaekin/material-confirm-alert#readme",
 	"bugs": {

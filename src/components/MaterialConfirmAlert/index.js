@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConfirmationDialog } from './ConfirmationDialog';
 
-const ConfirmAlertContext = createContext();
+const ConfirmAlertContext = React.createContext();
 
 const useConfirmAlert = () => {
 	const context = React.useContext(ConfirmAlertContext);

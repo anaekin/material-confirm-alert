@@ -36,11 +36,17 @@ const ConfirmAlertProvider = (props) => {
 		if (!cb || typeof cb !== 'function') {
 			throw new Error(`callback function is required in useConfirmAlert 'confirm' function`);
 		}
-		if (typeof options === 'string') {
-			options = { title: options };
-		} else {
-			options = {};
+
+		if (typeof options !== 'object' && typeof options !== 'string') {
+			throw new Error(
+				`options should be either 'string' or 'object' in useConfirmAlert 'confirm' function`
+			);
 		}
+
+		if (typeof options === 'string') {
+			options = { title: options || defaultOptions.title };
+		}
+
 		const confirmOptions = { ...defaultOptions, ...options };
 		setOptions(confirmOptions);
 		setOpen(true);

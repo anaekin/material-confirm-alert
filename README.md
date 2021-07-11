@@ -59,6 +59,10 @@ const MyComponent = () => {
 }
 ```
 
+## Demo
+
+#### [material-confirm-alert-demo](https://codesandbox.io/s/material-confirm-alert-demo-30801?file=/src/App.js)
+
 ## API
 
 ### `<ConfirmAlertProvider />`

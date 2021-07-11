@@ -32,15 +32,14 @@ const ConfirmAlertProvider = (props) => {
 	 * @param {(Options|string)} options Sets the options for the Confirmation dialog
 	 * @param {function(boolean)} cb The callback that handles the user confirmation or rejection.
 	 */
-	const confirm = (options, cb) => {
+	const confirm = (options = defaultOptions, cb) => {
 		if (!cb || typeof cb !== 'function') {
 			throw new Error(`callback function is required in useConfirmAlert 'confirm' function`);
 		}
 		if (typeof options === 'string') {
 			options = { title: options };
-		} else {
-			options = {};
 		}
+
 		const confirmOptions = { ...defaultOptions, ...options };
 		setOptions(confirmOptions);
 		setOpen(true);

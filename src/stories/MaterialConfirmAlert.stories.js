@@ -8,9 +8,9 @@ const MaterialConfirmAlertExample1 = () => {
 	const handleClick = () => {
 		confirm('Do you want to delete?', (result) => {
 			if (result) {
-				alert(`User selected 'OK'`);
+				alert('User confirmed');
 			} else {
-				alert(`User selected 'Cancel'`);
+				alert('User cancelled');
 			}
 		});
 	};
@@ -33,9 +33,9 @@ const MaterialConfirmAlertExample2 = () => {
 			},
 			(result) => {
 				if (result) {
-					alert(`User selected 'OK'`);
+					alert('User confirmed');
 				} else {
-					alert(`User selected 'Cancel'`);
+					alert('User cancelled');
 				}
 			}
 		);

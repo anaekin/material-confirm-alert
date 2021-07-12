@@ -13,12 +13,20 @@
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.esm.js",
+	"files": [
+		"dist"
+	],
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook",
 		"build": "rollup -c",
-		"prepublishOnly": "npm run build"
+		"build-storybook": "build-storybook",
+		"lint": "eslint ./src",
+		"lint:fix": "eslint ./src --fix",
+		"prepublishOnly": "npm run test && npm run build",
+		"storybook": "start-storybook -p 6006",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "jest --coverage",
+		"test:coveralls": "jest --coverage && coveralls < coverage/lcov.info"
 	},
 	"keywords": [
 		"react confirm",
@@ -34,6 +42,8 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@babel/core": "^7.14.6",
+		"@babel/plugin-transform-runtime": "^7.14.5",
+		"@babel/preset-env": "^7.14.7",
 		"@babel/preset-react": "^7.14.5",
 		"@material-ui/core": "^4.12.1",
 		"@rollup/plugin-node-resolve": "^13.0.0",
@@ -41,7 +51,15 @@
 		"@storybook/addon-essentials": "^6.3.4",
 		"@storybook/addon-links": "^6.3.4",
 		"@storybook/react": "^6.3.4",
+		"@testing-library/react": "^12.0.0",
 		"babel-loader": "^8.2.2",
+		"coveralls": "^3.1.1",
+		"eslint": "^7.30.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-jest": "^24.3.6",
+		"eslint-plugin-react": "^7.24.0",
+		"jest": "^27.0.6",
+		"prettier": "^2.3.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"rollup": "^2.53.0",
@@ -55,5 +73,37 @@
 		"react-dom": "^17.0.2",
 		"@material-ui/core": "^4.12.1"
 	},
-	"dependencies": {}
+	"dependencies": {},
+	"babel": {
+		"presets": [
+			"@babel/preset-env",
+			"@babel/preset-react"
+		],
+		"env": {
+			"test": {
+				"plugins": [
+					"@babel/plugin-transform-runtime"
+				]
+			}
+		}
+	},
+	"jest": {
+		"testMatch": [
+			"<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+			"<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+		],
+		"testEnvironment": "jsdom"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }

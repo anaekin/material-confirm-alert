@@ -115,6 +115,15 @@ describe('material-confirm-alert', () => {
 		expect(queryByText('Are you sure?')).toBeTruthy();
 	});
 
+	test('options as empty string', async () => {
+		const { getByTestId, queryByText } = render(<TestComponent options={''} cb={callback} />);
+		expect(queryByText('Are you sure?')).toBeFalsy();
+
+		// Click delete button
+		fireEvent.click(getByTestId('delete-button'));
+		expect(queryByText('Are you sure?')).toBeTruthy();
+	});
+
 	test('options as undefined', async () => {
 		const { getByTestId, queryByText } = render(<TestComponent cb={callback} />);
 		expect(queryByText('Are you sure?')).toBeFalsy();
@@ -124,7 +133,7 @@ describe('material-confirm-alert', () => {
 		fireEvent.click(getByTestId('delete-button'));
 		expect(consoleError).toHaveBeenCalled();
 		expect(consoleError.mock.calls[0][0]).toBe(
-			'options should be either \'string\' or \'object\' in useConfirmAlert \'confirm\' function'
+			"options should be either 'string' or 'object' in useConfirmAlert 'confirm' function"
 		);
 		consoleError.mockRestore();
 	});
@@ -140,7 +149,7 @@ describe('material-confirm-alert', () => {
 		fireEvent.click(getByTestId('delete-button'));
 		expect(consoleError).toHaveBeenCalled();
 		expect(consoleError.mock.calls[0][0]).toBe(
-			'callback function is required in useConfirmAlert \'confirm\' function'
+			"callback function is required in useConfirmAlert 'confirm' function"
 		);
 		consoleError.mockRestore();
 	});

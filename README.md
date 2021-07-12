@@ -1,6 +1,6 @@
 # material-confirm-alert
 
-[![GitHub license](https://img.shields.io/github/license/anaekin/material-confirm-alert)](https://github.com/anaekin/material-confirm-alert/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/material-confirm-alert)](https://www.npmjs.com/package/material-confirm-alert)
+[![GitHub license](https://img.shields.io/github/license/anaekin/material-confirm-alert)](https://github.com/anaekin/material-confirm-alert/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/material-confirm-alert)](https://www.npmjs.com/package/material-confirm-alert) [![Coverage Status](https://coveralls.io/repos/github/anaekin/material-confirm-alert/badge.svg?branch=master)](https://coveralls.io/github/anaekin/material-confirm-alert?branch=master) [![Build Status](https://travis-ci.com/anaekin/material-confirm-alert.svg?branch=master)](https://travis-ci.com/anaekin/material-confirm-alert)
 
 A simple material-ui confirmation alert based on React Context API.
 

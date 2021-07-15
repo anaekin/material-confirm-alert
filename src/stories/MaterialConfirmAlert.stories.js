@@ -5,14 +5,13 @@ import { ConfirmAlertProvider, useConfirmAlert } from '../components/MaterialCon
 
 const MaterialConfirmAlertExample1 = () => {
 	const confirm = useConfirmAlert();
-	const handleClick = () => {
-		confirm('Do you want to delete?', (result) => {
-			if (result) {
-				alert('User confirmed');
-			} else {
-				alert('User cancelled');
-			}
-		});
+	const handleClick = async () => {
+		const result = await confirm('Do you want to delete?');
+		if (result) {
+			alert('User confirmed');
+		} else {
+			alert('User cancelled');
+		}
 	};
 	return (
 		<Button variant="contained" color="primary" onClick={handleClick}>
@@ -23,22 +22,19 @@ const MaterialConfirmAlertExample1 = () => {
 
 const MaterialConfirmAlertExample2 = () => {
 	const confirm = useConfirmAlert();
-	const handleClick = () => {
-		confirm(
-			{
-				title: 'Do you want to delete this item?',
-				description: 'This item will be deleted forever and cannot be undone',
-				okButtonText: 'Yes',
-				cancelButtonText: 'No',
-			},
-			(result) => {
-				if (result) {
-					alert('User confirmed');
-				} else {
-					alert('User cancelled');
-				}
-			}
-		);
+
+	const handleClick = async () => {
+		const result = await confirm({
+			title: 'Do you want to delete this item?',
+			description: 'This item will be deleted forever and cannot be undone',
+			okButtonText: 'Yes',
+			cancelButtonText: 'No',
+		});
+		if (result) {
+			alert('User confirmed');
+		} else {
+			alert('User cancelled');
+		}
 	};
 	return (
 		<Button variant="contained" color="primary" onClick={handleClick}>

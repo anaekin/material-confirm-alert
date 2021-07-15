@@ -18,7 +18,8 @@ npm i --save material-confirm-alert
 
 First, import the `ConfirmAlertProvider` from the package and use it to wrap your component wherever you want to use the confirmation alert.
 If you want to use it across the whole app, wrap your `App` component inside it.
-Note: If you are using material-ui `ThemeProvider`, wrap the `ConfirmAlertProvider` inside it.
+
+**_Note: If you are using material-ui `ThemeProvider`, wrap the `ConfirmAlertProvider` inside it._**
 
 ```jsx
 import { ConfirmAlertProvider } from 'material-confirm-alert';
@@ -33,7 +34,7 @@ export const App = () => {
 }
 ```
 
-Next, inside your component where you want to use the confirmation alert, import the `useConfirmAlert` hook from the package. This hook returns a `confirm` function which will be used for confirmation alert.
+Next, inside your component where you want to use the confirmation alert, import the `useConfirmAlert` hook from the package. This hook returns a `confirm` function which will be used to call confirmation alert.
 
 ```jsx
 import { useConfirmAlert } from 'material-confirm-alert';
@@ -41,16 +42,16 @@ import { useConfirmAlert } from 'material-confirm-alert';
 
 const MyComponent = () => {
     const confirm = useConfirmAlert();
-    const handleClick = () => {
-        confirm('Do you want to delete?', (result) => {
-            if(result) {
-                // Handle operation when user confirm
-                ...
-            } else {
-                // Handle operation when user cancel
-                ...
-            }
-        });
+    const handleClick = async () => {
+        // confirm returns a promise and can be used with async/await
+        const result = await confirm('Do you want to delete?');
+        if(result) {
+            // Handle operation when user confirm
+            ...
+        } else {
+            // Handle operation when user cancel
+            ...
+        }
     }
 
     return (
@@ -61,7 +62,7 @@ const MyComponent = () => {
 
 ## Demo
 
-#### [material-confirm-alert-demo](https://codesandbox.io/s/material-confirm-alert-demo-30801?file=/src/App.js)
+### [material-confirm-alert-demo](https://codesandbox.io/s/material-confirm-alert-demo-30801?file=/src/App.js)
 
 ## API
 
@@ -102,19 +103,19 @@ import { useConfirmAlert } from 'material-confirm-alert'
 
 // Inside components
 const MyComponent = () => {
-    const confirm = userConfirmAlert();
+    const confirm = useConfirmAlert();
     ...
 }
 ```
 
 ### `confirm(options, callback)`
 
-This function is used to call the confirmation dialog. It takes two parameters - `options` and a `callback` function
+This function is used to call the confirmation dialog. It takes an `object` or a `string` as parameter.
+It returns a promise and can be used with async/await. The promise will resolve into `boolean` based on user choice.
 
-| Parameters | Type                 | Required | Description                                                                                                                                                           |
-| ---------- | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `options`  | `object` or `string` | Yes      | Sets the options for the confirmation dialog. Check `options` API for more details. If only `string` is passed, then it will be the title of the confirmation dialog. |
-| `callback` | `function`           | Yes      | Sets the callback, which will be called on user actions. It takes a parameter `result` which will be `true` or `false` based on user selection.                       |
+| Parameters | Type                            | Optional | Description                                                                                                                                                           |
+| ---------- | ------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `options`  | `object` or `string` or (empty) | Yes      | Sets the options for the confirmation dialog. Check `options` API for more details. If only `string` is passed, then it will be the title of the confirmation dialog. |
 
 ##### Example -
 
@@ -122,14 +123,13 @@ This function is used to call the confirmation dialog. It takes two parameters -
 // Inside Components
 const MyComponent = () => {
     const confirm = useConfirmAlert();
-    const handleClick = () => {
-        confirm('Do you want to delete?', (result) => {
-            if(result) {
-                // Handle operation when user confirm
-            } else {
-                // Handle operation when user cancel
-            }
-        })
+    const handleClick = async () => {
+        const result = await confirm('Do you want to delete?');
+        if(result) {
+            // Handle operation when user confirm
+        } else {
+            // Handle operation when user cancel
+        }
     }
     // return
     ...
@@ -153,19 +153,18 @@ This object can be used to set the optional parameters for the confirmation dial
 // Inside Components
 const MyComponent = () => {
     const confirm = useConfirmAlert();
-    const handleClick = () => {
-        confirm({
+    const handleClick = async () => {
+        const result = await confirm({
             'title': 'Do you want to delete this item?',
             'description': 'This cannot be undone once deleted!',
             'okButtonText': 'Yes',
             'cancelButtonText': 'No'
-        }, (result) => {
-            if(result) {
-                // Handle operation when user confirm
-            } else {
-                // Handle operation when user cancel
-            }
-        })
+        });
+        if(result) {
+            // Handle operation when user confirm
+        } else {
+            // Handle operation when user cancel
+        }
     }
     // return
     ...

@@ -17,8 +17,9 @@ const defaultOptions = {
 
 const ConfirmAlertProvider = (props) => {
 	const [open, setOpen] = React.useState(false);
-	const [callback, setCallback] = React.useState();
 	const [options, setOptions] = React.useState(defaultOptions);
+	const [promiseObject, setPromiseObject] = React.useState([]);
+
 	/**
 	 * @typedef {Object} Options
 	 * @property {string} [okButtonText] Sets the 'Ok' button text (Default: Ok)
@@ -30,33 +31,39 @@ const ConfirmAlertProvider = (props) => {
 	 * This function is used to call the confirmation dialog.
 	 * @typedef {function((Options|string), function(boolean))} confirm
 	 * @param {(Options|string)} options Sets the options for the Confirmation dialog
-	 * @param {function(boolean)} cb The callback that handles the user confirmation or rejection.
+	 * @returns {Promise<boolean>} returns a promise
 	 */
-	const confirm = (options, cb) => {
-		if (!cb || typeof cb !== 'function') {
-			throw new Error('callback function is required in useConfirmAlert \'confirm\' function');
-		}
+	const confirm = (options = defaultOptions) => {
+		try {
+			if (typeof options !== 'object' && typeof options !== 'string') {
+				throw new Error(
+					"options should be either 'string' or 'object' in useConfirmAlert 'confirm' function"
+				);
+			}
 
-		if (typeof options !== 'object' && typeof options !== 'string') {
-			throw new Error(
-				'options should be either \'string\' or \'object\' in useConfirmAlert \'confirm\' function'
-			);
-		}
+			if (typeof options === 'string') {
+				options = { title: options || defaultOptions.title };
+			}
 
-		if (typeof options === 'string') {
-			options = { title: options || defaultOptions.title };
-		}
+			const confirmOptions = { ...defaultOptions, ...options };
+			setOptions(confirmOptions);
 
-		const confirmOptions = { ...defaultOptions, ...options };
-		setOptions(confirmOptions);
-		setOpen(true);
-		setCallback(() => cb);
+			return new Promise((resolve, reject) => {
+				setOpen(true);
+				setPromiseObject([resolve, reject]);
+			});
+		} catch (e) {
+			console.error(e);
+		}
 	};
 
-	const onClose = (result) => {
+	const onClose = (result, [resolve]) => {
 		setOpen(false);
-		callback(result);
-		setCallback();
+		if (result) {
+			resolve(true);
+		} else {
+			resolve(false);
+		}
 	};
 
 	return (
@@ -64,7 +71,11 @@ const ConfirmAlertProvider = (props) => {
 			<ConfirmAlertContext.Provider value={confirm}>
 				{props.children}
 			</ConfirmAlertContext.Provider>
-			<ConfirmationDialog open={open} onClose={onClose} options={options} />
+			<ConfirmationDialog
+				open={open}
+				onClose={(result) => onClose(result, promiseObject)}
+				options={options}
+			/>
 		</React.Fragment>
 	);
 };

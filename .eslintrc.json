@@ -20,7 +20,7 @@
 	"plugins": ["react", "jest"],
 	"rules": {
 		"indent": ["error", "tab"],
-		"quotes": ["error", "single", { "avoidEscape": true }],
+		"quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
 		"semi": ["error", "always"],
 		"react/prop-types": "off"
 	}

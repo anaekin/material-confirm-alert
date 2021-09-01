@@ -1,7 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from '@material-ui/core/Button';
-import { ConfirmAlertProvider, useConfirmAlert } from '../components/MaterialConfirmAlert';
+import {
+	ConfirmAlertProvider,
+	useConfirmAlert,
+} from '../components/MaterialConfirmAlert';
 
 const MaterialConfirmAlertExample1 = () => {
 	const confirm = useConfirmAlert();

@@ -31,7 +31,12 @@ export const ConfirmationDialog = ({
 				</DialogContent>
 			)}
 			<DialogActions id="confirmation-dialog-actions">
-				<Button autoFocus onClick={handleCancel} variant="outlined" color="secondary">
+				<Button
+					autoFocus
+					onClick={handleCancel}
+					variant="outlined"
+					color="secondary"
+				>
 					{cancelButtonText}
 				</Button>
 				<Button onClick={handleOk} variant="contained" color="primary">

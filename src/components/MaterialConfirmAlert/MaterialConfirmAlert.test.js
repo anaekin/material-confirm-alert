@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, fireEvent, waitForElementToBeRemoved, cleanup } from '@testing-library/react';
+import {
+	render,
+	fireEvent,
+	waitForElementToBeRemoved,
+	cleanup,
+} from '@testing-library/react';
 import { ConfirmAlertProvider, useConfirmAlert } from './index';
 
 describe('material-confirm-alert', () => {
@@ -50,7 +55,9 @@ describe('material-confirm-alert', () => {
 
 			// Click 'Ok' button to represent user confirmed
 			fireEvent.click(getByText('Ok'));
-			await waitForElementToBeRemoved(() => queryByText('Do you want to delete?'));
+			await waitForElementToBeRemoved(() =>
+				queryByText('Do you want to delete?')
+			);
 			expect(userConfirmed).toHaveBeenCalled();
 			expect(userCancelled).not.toHaveBeenCalled();
 		});
@@ -67,7 +74,9 @@ describe('material-confirm-alert', () => {
 
 			// Click 'Cancel' button to represent user cancelled
 			fireEvent.click(getByText('Cancel'));
-			await waitForElementToBeRemoved(() => queryByText('Do you want to delete?'));
+			await waitForElementToBeRemoved(() =>
+				queryByText('Do you want to delete?')
+			);
 			expect(userCancelled).toHaveBeenCalled();
 			expect(userConfirmed).not.toHaveBeenCalled();
 		});
@@ -89,7 +98,8 @@ describe('material-confirm-alert', () => {
 				<TestComponent
 					options={{
 						title: 'Do you want to delete this item?',
-						description: 'This will delete this item forever and cannot be undone',
+						description:
+							'This will delete this item forever and cannot be undone',
 						okButtonText: 'Yes',
 						cancelButtonText: 'No',
 					}}
@@ -108,7 +118,9 @@ describe('material-confirm-alert', () => {
 		});
 
 		test('options as null object', async () => {
-			const { getByTestId, queryByText } = render(<TestComponent options={null} />);
+			const { getByTestId, queryByText } = render(
+				<TestComponent options={null} />
+			);
 			expect(queryByText('Are you sure?')).toBeFalsy();
 
 			// Click delete button
@@ -117,7 +129,9 @@ describe('material-confirm-alert', () => {
 		});
 
 		test('options as empty string', async () => {
-			const { getByTestId, queryByText } = render(<TestComponent options={''} />);
+			const { getByTestId, queryByText } = render(
+				<TestComponent options={''} />
+			);
 			expect(queryByText('Are you sure?')).toBeFalsy();
 
 			// Click delete button
@@ -135,10 +149,14 @@ describe('material-confirm-alert', () => {
 		});
 
 		test('options as neither object nor string', async () => {
-			const { getByTestId, queryByText } = render(<TestComponent options={() => {}} />);
+			const { getByTestId, queryByText } = render(
+				<TestComponent options={() => {}} />
+			);
 			expect(queryByText('Are you sure?')).toBeFalsy();
 
-			const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
+			const consoleError = jest
+				.spyOn(console, 'error')
+				.mockImplementation(() => {});
 			// Click delete button
 			fireEvent.click(getByTestId('delete-button'));
 			expect(consoleError).toHaveBeenCalled();

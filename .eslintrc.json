@@ -17,11 +17,10 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "jest"],
+	"plugins": ["react", "jest", "prettier"],
 	"rules": {
-		"indent": ["error", "tab"],
-		"quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
-		"semi": ["error", "always"],
-		"react/prop-types": "off"
-	}
+		"linebreak-style": ["error", "unix"],
+		"react/prop-types": 0
+	},
+	"ignorePatterns": ["dist", "coverage"]
 }

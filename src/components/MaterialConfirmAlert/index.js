@@ -29,7 +29,7 @@ const ConfirmAlertProvider = (props) => {
 	 */
 	/**
 	 * This function is used to call the confirmation dialog.
-	 * @typedef {function((Options|string), function(boolean))} confirm
+	 * @function
 	 * @param {(Options|string)} options Sets the options for the Confirmation dialog
 	 * @returns {Promise<boolean>} returns a promise
 	 */

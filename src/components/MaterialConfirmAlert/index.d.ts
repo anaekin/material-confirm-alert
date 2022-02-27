@@ -1,16 +1,31 @@
+import { DialogProps } from '@mui/material';
 import React from 'react';
 
-declare interface Options {
-	title?: String;
-	description?: String;
-	okButtonText?: String;
-	cancelButtonText?: String;
+export interface Options {
+	title?: string;
+	description?: string;
+	okButtonText?: string;
+	cancelButtonText?: string;
 }
 
-export const ConfirmAlertContext: React.Context<any>;
+export interface ConfirmationDialogProps {
+	open: boolean;
+	options: Options;
+	onClose: (result: boolean) => void;
+}
 
-export const ConfirmAlertProvider: React.ComponentType<>;
+export function ConfirmFunction(options?: Options | string): Promise<boolean>;
 
-export const useConfirmAlert: () => (
-	options?: Options | String
-) => Promise<boolean>;
+export interface ConfirmAlertProviderProps {
+	children: React.ReactNode;
+}
+
+export function ConfirmAlertProvider(
+	props: ConfirmAlertProviderProps
+): React.ReactElement;
+
+export function useConfirmAlert(): typeof ConfirmFunction;
+
+export function ConfirmationDialog(
+	props: ConfirmationDialogProps & DialogProps
+): React.ReactElement;

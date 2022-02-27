@@ -80,4 +80,4 @@ const ConfirmAlertProvider = (props) => {
 	);
 };
 
-export { ConfirmAlertContext, useConfirmAlert, ConfirmAlertProvider };
+export { useConfirmAlert, ConfirmAlertProvider };

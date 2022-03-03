@@ -6,6 +6,7 @@ import {
 	cleanup,
 } from '@testing-library/react';
 import { ConfirmAlertProvider, useConfirmAlert } from './index';
+import { Options } from './ConfirmAlertContext';
 
 describe('material-confirm-alert', () => {
 	const userConfirmed = jest.fn();
@@ -14,7 +15,7 @@ describe('material-confirm-alert', () => {
 	beforeEach(() => jest.clearAllMocks());
 	afterEach(cleanup);
 
-	const callback = (result) => {
+	const callback = (result: boolean | undefined) => {
 		if (result) {
 			userConfirmed();
 		} else {
@@ -22,7 +23,7 @@ describe('material-confirm-alert', () => {
 		}
 	};
 
-	const DeleteButton = ({ options }) => {
+	const DeleteButton = ({ options }: { options: Options }) => {
 		const confirm = useConfirmAlert();
 
 		const handleClick = async () => {
@@ -37,9 +38,12 @@ describe('material-confirm-alert', () => {
 		);
 	};
 
-	const TestComponent = ({ options, cb }) => (
+	type TestComponentProps = {
+		options?: any;
+	};
+	const TestComponent = ({ options }: TestComponentProps) => (
 		<ConfirmAlertProvider>
-			<DeleteButton options={options} cb={cb} />
+			<DeleteButton options={options} />
 		</ConfirmAlertProvider>
 	);
 	describe('User choices', () => {
@@ -103,7 +107,6 @@ describe('material-confirm-alert', () => {
 						okButtonText: 'Yes',
 						cancelButtonText: 'No',
 					}}
-					cb={callback}
 				/>
 			);
 

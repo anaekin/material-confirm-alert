@@ -2,8 +2,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
 import typescript from '@rollup/plugin-typescript';
-import { terser } from 'rollup-plugin-terser';
 import dts from 'rollup-plugin-dts';
+import babel from '@rollup/plugin-babel';
 
 import packageJson from './package.json';
 export default [
@@ -13,21 +13,22 @@ export default [
 			{
 				file: packageJson.main,
 				format: 'cjs',
-				sourcemap: true,
-				name: 'material-confirm-alert',
 			},
 			{
 				file: packageJson.module,
 				format: 'esm',
-				sourcemap: true,
 			},
 		],
+		external: Object.keys(packageJson.peerDependencies || {}),
 		plugins: [
+			babel({
+				exclude: 'node_modules/**',
+				presets: ['@babel/preset-react'],
+			}),
 			external(),
 			resolve(),
 			commonjs(),
 			typescript({ tsconfig: './tsconfig.json' }),
-			terser(),
 		],
 	},
 	{

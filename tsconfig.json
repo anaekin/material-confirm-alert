@@ -14,5 +14,11 @@
 		"declaration": true,
 		"declarationDir": "types",
 		"emitDeclarationOnly": true
-	}
+	},
+	"exclude": [
+		"dist",
+		"node_modules",
+		"src/**/*.test.tsx",
+		"src/**/*.stories.tsx"
+	]
 }

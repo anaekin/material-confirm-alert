@@ -19,7 +19,12 @@
 	},
 	"plugins": ["react", "jest", "prettier"],
 	"rules": {
-		"linebreak-style": ["error", "unix"],
+		"linebreak-style": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		],
 		"react/prop-types": 0
 	},
 	"ignorePatterns": ["dist", "coverage"]

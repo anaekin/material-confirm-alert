@@ -2,7 +2,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
 import typescript from '@rollup/plugin-typescript';
-import dts from 'rollup-plugin-dts';
+import { dts } from 'rollup-plugin-dts';
 import babel from '@rollup/plugin-babel';
 
 import packageJson from './package.json';

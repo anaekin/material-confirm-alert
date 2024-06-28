@@ -18,7 +18,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "rollup -c",
+		"build": "rollup -c --bundleConfigAsCjs",
 		"build-storybook": "build-storybook",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
